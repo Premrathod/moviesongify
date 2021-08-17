@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,21 +18,9 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 </head>
+
 <body>
-    <h1>TOP RATED</h1>
-    <div class="row">
-        <% topRated.forEach(movie=>{ %>
-            <div class="card">
-                <div class="card-body">
-                    <div class="col-md-4" style="text-align: center;">
-                        <img style="width: 500px;height: 500px;"
-                                src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="">
-                        <h3><%= movie.title %></h3>
-                        <a class="btn btn-info" href="/movie/<%= movie.id %>">view more</a>
-                    </div>
-                </div>
-            </div>
-        <% }) %>
-    </div>
+    <h1>PARTICULAR MOVIE</h1>
 </body>
+
 </html>

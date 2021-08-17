@@ -1,0 +1,21 @@
+env.sh
+nodemon.json
+
+# IDE files
+.vscode
+.code
+.idea
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variables file
+.env

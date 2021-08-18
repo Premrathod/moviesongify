@@ -1,0 +1,9 @@
+Search Bar center
+TV and Movies
+Genres page functionality [Prem]
+mongo db connection
+schema making
+Authentication
+Home page updation
+Movie page more info about cast, video(on side of poster).
+Songs API integration

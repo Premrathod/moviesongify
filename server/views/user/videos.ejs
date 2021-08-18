@@ -1,0 +1,12 @@
+<%- include('../partials/header.ejs') %>
+<div class="container-fluid mx-auto mt-5">
+    <div class="row align-items-center justify-content-center">
+        <% videos.forEach(video=>{ %>
+        <div class="col-md-4 mb-5 align-items-center justify-content-center">
+            <iframe width="420" height="345" src="https://www.youtube.com/embed/<%= video.key %>">
+            </iframe>
+        </div>
+        <% }) %>
+    </div>
+</div>
+<%- include('../partials/footer.ejs') %>

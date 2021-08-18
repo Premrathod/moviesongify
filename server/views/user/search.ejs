@@ -1,7 +1,7 @@
 <%- include('../partials/header.ejs') %>
 <div class="container-fluid mx-auto mt-5">
     <div class="row align-items-center justify-content-center">
-        <% topRated.forEach(movie=>{ %>
+        <% results.forEach(movie=>{ %>
         <div class="col-md-3 mb-5 align-items-center justify-content-center">
             <div class="card text-center mb-2" style="width: 20rem;">
                 <img class="card-img-top" src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>"
@@ -9,9 +9,7 @@
                 <div class="card-body" style="background-color: #000000;">
                     <h5 class="card-title" style="color:white;"><%= movie.title %></h5>
                     <!-- <p class="card-text"><%= movie.overview %></p> -->
-                    <a href="/movie/<%= movie.id %>" class="btn"
-                        style="background-color: #F5C518;color: #000000;font: 1.2em bold sans-serif;font-weight: 700;">View
-                        more</a>
+                    <a href="/movie/<%= movie.id %>" class="btn" style="background-color: #F5C518;color: #000000;font: 1.2em bold sans-serif;font-weight: 700;">View more</a>
                 </div>
             </div>
         </div>

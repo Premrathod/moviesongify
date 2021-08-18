@@ -70,8 +70,8 @@
                     <div class="<%= active_class %>">
                         <div class="testimonial4_slide">
                             <p><%= review.content.slice(0,500) %></p>
-                            <h4><%= review.author %></h4>
-                            <h4><%= review.updated_at %></h4>
+                            <h4>By :<%= review.author %></h4>
+                            <h4>On : <%= review.updated_at.slice(0,10) %></h4>
                         </div>
                     </div>
                     <% }else{ %>
@@ -79,7 +79,7 @@
                             <div class="testimonial4_slide">
                                 <p><%= review.content.slice(0,500) %></p>
                                 <h4>By : <%= review.author %></h4>
-                                <h4>On : <%= review.updated_at %></h4>
+                                <h4>On : <%= review.updated_at.slice(0,10) %></h4>
                             </div>
                         </div>
                     <% } %>    

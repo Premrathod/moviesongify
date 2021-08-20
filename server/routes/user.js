@@ -2,6 +2,15 @@ const express = require("express");
 const fetch = require("node-fetch");
 const router = express.Router();
 
+var SpotifyWebApi = require("spotify-web-api-node");
+
+// credentials are optional
+var spotifyApi = new SpotifyWebApi({
+  clientId: process.env.SPOTIFY_API_ID,
+  clientSecret: process.env.SPOTIFY_API_SECRET,
+  redirectUri: "http://localhost:3000/",
+});
+
 router.get("/", async (req, res) => {
   let response = await fetch(
     `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_API_KEY}`
@@ -119,5 +128,13 @@ router.get("/genres", async (req, res) => {
   response = await response.json();
   res.render("user/genres", { topRated: response.genres });
 });
+
+// router.get("/genres/:genre", async (req, res) => {
+//   let response = await fetch(
+//     `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.TMDB_API_KEY}`
+//   );
+//   response = await response.json();
+//   res.render("user/genres", { topRated: response.genres });
+// });
 
 module.exports = router;

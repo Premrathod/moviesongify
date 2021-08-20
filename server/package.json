@@ -21,6 +21,7 @@
     "express-session": "^1.17.2",
     "mongoose": "^5.13.7",
     "node-fetch": "^2.6.1",
-    "passport": "^0.4.1"
+    "passport": "^0.4.1",
+    "spotify-web-api-node": "^5.0.2"
   }
 }

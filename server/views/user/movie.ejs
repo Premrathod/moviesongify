@@ -13,7 +13,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-6" style="color:white;">
           <% movie.genres.forEach( genre => { %>
-            <a href="/genres/<%= genre.name %>/<%= genre.id %>" class="btn btn-outline mt-3 p-2" style="border-radius:5px;background-color:#F5C518;color: black;"><%= genre.name%></a>
+            <a href="/movieGenres/<%= genre.name %>/<%= genre.id %>" class="btn btn-outline mt-3 p-2" style="border-radius:5px;background-color:#F5C518;color: black;"><%= genre.name%></a>
             <% }) %>
           <p><h1>Overview:</h1><%= movie.overview%></p>
           <a href="/movie/<%= movie.id %>/videos">Get videos</a>

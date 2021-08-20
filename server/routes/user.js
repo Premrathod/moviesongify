@@ -19,14 +19,6 @@ router.get("/", async (req, res) => {
 	res.render("user/home", { topRated: response.results });
 });
 
-router.get("/topRated", async (req, res) => {
-	let response = await fetch(
-		`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_API_KEY}`
-	);
-	response = await response.json();
-	res.render("user/topRated", { topRated: response.results });
-});
-
 router.get("/movie/:id", async (req, res) => {
 	//search movie by id
 	let response = await fetch(
@@ -97,12 +89,22 @@ router.get("/movie/:id/videos", async (req, res) => {
 //   res.render("user/latest", { topRated: response.results });
 // });
 
+// Filters routes starts here ...
+
+router.get("/topRated", async (req, res) => {
+	let response = await fetch(
+		`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_API_KEY}`
+	);
+	response = await response.json();
+	res.render("user/filters", { results: response.results });
+});
+
 router.get("/nowPlaying", async (req, res) => {
 	let response = await fetch(
 		`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.TMDB_API_KEY}`
 	);
 	response = await response.json();
-	res.render("user/now_playing", { topRated: response.results });
+	res.render("user/filters", { results: response.results });
 });
 
 router.get("/popular", async (req, res) => {
@@ -110,7 +112,7 @@ router.get("/popular", async (req, res) => {
 		`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}`
 	);
 	response = await response.json();
-	res.render("user/now_playing", { topRated: response.results });
+	res.render("user/filters", { results: response.results });
 });
 
 router.get("/upcoming", async (req, res) => {
@@ -118,10 +120,10 @@ router.get("/upcoming", async (req, res) => {
 		`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_API_KEY}`
 	);
 	response = await response.json();
-	res.render("user/upcoming", { topRated: response.results });
+	res.render("user/filters", { results: response.results });
 });
 
-router.get("/genres", async (req, res) => {
+router.get("/movieGenres", async (req, res) => {
 	let response = await fetch(
 		`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.TMDB_API_KEY}`
 	);
@@ -129,7 +131,7 @@ router.get("/genres", async (req, res) => {
 	res.render("user/genres", { genres: response.genres });
 });
 
-router.get("/genres/:genre/:genreId", async (req, res) => {
+router.get("/movieGenres/:genre/:genreId", async (req, res) => {
 	let response = await fetch(
 		`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=${req.params.genreId}`
 	);
@@ -140,6 +142,8 @@ router.get("/genres/:genre/:genreId", async (req, res) => {
 	// req.flash("success_msgs", `This list contains ${req.params.genre}`);
 	res.render("user/search", { results, genre: req.params.genre });
 });
+
+// make a route named "tvGenres"
 
 router.get("/test", (req, res) => {});
 

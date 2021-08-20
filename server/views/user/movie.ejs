@@ -1,5 +1,6 @@
 <%- include('../partials/header.ejs') %>
     <div class="container-fluid mx-auto mt-3 mb-5">
+        <%- include('../partials/messages.ejs') %>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-4">
@@ -11,8 +12,8 @@
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-6" style="color:white;">
-          <% movie.genres.forEach(x=>{ %>
-            <button class="mt-3 p-2" style="border-radius:5px;background-color:#F5C518;color: black;"><%= x.name%></button>
+          <% movie.genres.forEach( genre => { %>
+            <a href="/genres/<%= genre.name %>/<%= genre.id %>" class="btn btn-outline mt-3 p-2" style="border-radius:5px;background-color:#F5C518;color: black;"><%= genre.name%></a>
             <% }) %>
           <p><h1>Overview:</h1><%= movie.overview%></p>
           <a href="/movie/<%= movie.id %>/videos">Get videos</a>

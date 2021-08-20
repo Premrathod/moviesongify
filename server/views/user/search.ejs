@@ -1,5 +1,11 @@
 <%- include('../partials/header.ejs') %>
 <div class="container-fluid mx-auto mt-5">
+    <%- include('../partials/messages.ejs') %>
+    <% if(genre){ %>
+    <h1 style="text-align:center;color: white;" class="mb-5">This is the filtered movie list based on <i style="color: #F5C518;"><%= genre %></i> Genre!</h1>
+    <% }else{ %>
+    <h1 style="text-align:center;color: white;" class="mb-5">This is the list of movies related to <i style="color: #F5C518;"><%= search %></i>!</h1>
+    <% } %>
     <div class="row align-items-center justify-content-center">
         <% results.forEach(movie=>{ %>
         <div class="col-md-3 mb-5 align-items-center justify-content-center">

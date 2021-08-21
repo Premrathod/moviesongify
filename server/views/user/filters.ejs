@@ -1,5 +1,7 @@
 <%- include('../partials/header.ejs') %>
 <div class="container-fluid mx-auto mt-5">
+  <%- include('../partials/messages.ejs') %>
+  <h1 style="text-align:center;color: white;" class="mb-5">This is the list of Available <i style="color: #F5C518;"><%= filterType %> <%= type %>s</i> On our site!</h1>
   <div class="row align-items-center justify-content-center">
     <% results.forEach(movie=>{ %>
     <div class="col-md-3 mb-5 align-items-center justify-content-center">

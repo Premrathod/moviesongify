@@ -1,12 +1,13 @@
 <%- include('../partials/header.ejs') %>
 <div class="container-fluid mx-auto mt-5">
   <%- include('../partials/messages.ejs') %>
+  <h1 style="text-align:center;color: white;" class="mb-5">This is the list of Available <i style="color: #F5C518;"><%= type %> genres</i> On our site!</h1>
   <div class="row align-items-center justify-content-center">
     <% genres.forEach(genre=>{ %>
     <ul>
       <li>
         <a
-          href="/<%= mg %>/<%= genre.name %>/<%= genre.id %>"
+          href="/<%= type.toLowerCase() %>/genres/<%= genre.name %>/<%= genre.id %>"
           class="btn btn-outline-success"
           style="color: black; background-color: #f5c518"
           ><%= genre.name %></a

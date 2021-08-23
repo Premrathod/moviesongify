@@ -11,6 +11,15 @@ var spotifyApi = new SpotifyWebApi({
 	redirectUri: "http://localhost:3000/",
 });
 
+spotifyApi.searchTracks("Love").then(
+	function (data) {
+		console.log('Search by "Love"', data.body);
+	},
+	function (err) {
+		console.error(err);
+	}
+);
+
 router.get("/", async (req, res) => {
 	let response = await fetch(
 		`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_API_KEY}`

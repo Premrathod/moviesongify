@@ -14,9 +14,10 @@
         <div class="col-md-6" style="color:white;">
           <% movie.genres.forEach( genre => { %>
             <a href="/movieGenres/<%= genre.name %>/<%= genre.id %>" class="btn btn-outline mt-3 p-2" style="border-radius:5px;background-color:#F5C518;color: black;"><%= genre.name%></a>
-            <% }) %>
+          <% }) %>
           <p><h1>Overview:</h1><%= movie.overview%></p>
           <a href="/movie/<%= movie.id %>/videos">Get videos</a>
+          <a class="btn btn-outline mt-3 p-2" style="border-radius:5px;background-color:#F5C518;color: black;"><%= imdbDetails.imdb %></a>
         </div>
       </div>
     </div>
@@ -51,13 +52,19 @@
         </div>
     </div>
 
-
     <section class="testimonial text-center">
         <div class="container">
 
             <div class="heading white-heading">
                 Testimonial/Reviews
             </div>
+            <% if(reviews.length==0){ %>
+                <div class="carousel-item active">
+                    <div class="testimonial4_slide">
+                        <h4>No reviews yet ...</h4>
+                    </div>
+                </div>
+            <% } %>
             <div id="testimonial4"
                 class="carousel slide testimonial4_indicators testimonial4_control_button thumb_scroll_x swipe_x"
                 data-ride="carousel" data-pause="hover" data-interval="5000" data-duration="2000">

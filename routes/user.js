@@ -4,6 +4,9 @@ const router = express.Router();
 
 var SpotifyWebApi = require("spotify-web-api-node");
 
+var clientId = process.env.SPOTIFY_API_ID;
+var clientSecret = process.env.SPOTIFY_API_SECRET;
+
 // spotify API configuration
 var spotifyApi = new SpotifyWebApi({
 	clientId: process.env.SPOTIFY_API_ID,
@@ -11,14 +14,43 @@ var spotifyApi = new SpotifyWebApi({
 	redirectUri: "http://localhost:3000/",
 });
 
-spotifyApi.searchTracks("Love").then(
-	function (data) {
-		console.log('Search by "Love"', data.body);
-	},
-	function (err) {
-		console.error(err);
-	}
-);
+const _getToken = async () => {
+	const result = await fetch("https://accounts.spotify.com/api/token", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/x-www-form-urlencoded",
+			Authorization: "Basic " + btoa(clientId + ":" + clientSecret),
+		},
+		body: "grant_type=client_credentials",
+	});
+
+	const data = await result.json();
+	return data.access_token;
+};
+
+const _getGenres = async (token) => {
+	const result = await fetch(
+		`https://api.spotify.com/v1/browse/categories?locale=sv_US`,
+		{
+			method: "GET",
+			headers: { Authorization: "Bearer " + token },
+		}
+	);
+
+	const data = await result.json();
+	return data.categories.items;
+};
+
+router.get("/spotify", async (req, res) => {
+	const access_token = await _getToken();
+	console.log("access token --- ", access_token);
+
+	const genres = await _getGenres(access_token);
+	console.log("genres --- ", genres);
+
+	res.redirect("back");
+	console.log("spotify...");
+});
 
 router.get("/", async (req, res) => {
 	let response = await fetch(

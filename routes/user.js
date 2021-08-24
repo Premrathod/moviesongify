@@ -37,15 +37,18 @@ router.get("/movie/:id", async (req, res) => {
 	response = await response.json();
 	let imdb_id = await response.imdb_id;
 
-	let imdbDetails = await fetch("http://localhost:5000/imdbDetails", {
-		method: "POST",
-		body: JSON.stringify({
-			imdb_id: imdb_id,
-		}),
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
+	let imdbDetails = await fetch(
+		"http://1e34-103-58-153-177.ngrok.io/imdbDetails",
+		{
+			method: "POST",
+			body: JSON.stringify({
+				imdb_id: imdb_id,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
+	);
 	imdbDetails = await imdbDetails.json();
 	console.log("imdb ka details yaha hai ---", imdbDetails);
 
@@ -101,15 +104,18 @@ router.get("/tvshow/:id", async (req, res) => {
 	const imdb_id = external_ids.imdb_id;
 	console.log(imdb_id);
 
-	let imdbDetails = await fetch("http://localhost:5000/imdbDetails", {
-		method: "POST",
-		body: JSON.stringify({
-			imdb_id: imdb_id,
-		}),
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
+	let imdbDetails = await fetch(
+		"http://1e34-103-58-153-177.ngrok.io/imdbDetails",
+		{
+			method: "POST",
+			body: JSON.stringify({
+				imdb_id: imdb_id,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
+	);
 	imdbDetails = await imdbDetails.json();
 	console.log("imdb ka details yaha hai ---", imdbDetails);
 

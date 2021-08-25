@@ -1,0 +1,44 @@
+<%- include('../partials/header.ejs') %>
+<div class="container-fluid mx-auto mt-5">
+  <%- include('../partials/messages.ejs') %>
+  <div class="row align-items-center justify-content-center">
+    <% playlists.forEach(playlist=>{ %>
+    <div class="col-md-3 mb-5 align-items-center justify-content-center">
+      <div class="card text-center mb-2" style="width: 20rem">
+        <img
+          class="card-img-top"
+          src="<%= playlist.images[0].url %>"
+          alt="Card image cap"
+        />
+        <div class="card-body" style="background-color: #000000">
+          <h5 class="card-title"><%= playlist.name %></h5>
+          <p class="card-text" style="color: white"><%= playlist.description %></p>
+          <a
+            href="<%= playlist.href %>"
+            class="btn"
+            style="
+              background-color: #f5c518;
+              color: #000000;
+              font: 1.2em bold sans-serif;
+              font-weight: 700;
+            "
+            >HREF
+          </a>
+          <a
+            href="<%= playlist.uri %>"
+            class="btn"
+            style="
+              background-color: #f5c518;
+              color: #000000;
+              font: 1.2em bold sans-serif;
+              font-weight: 700;
+            "
+            >URI
+          </a>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>
+<%- include('../partials/footer.ejs') %>

@@ -10,6 +10,10 @@ def myFunc(obj):
     else :
         return True
 
+@app.route('/')
+def index():
+    return "<h1>Welcome to our server !!</h1>"
+
 @app.route('/imdbDetails',methods=['POST'])
 def imdbDetails():
     params = request.json
@@ -57,4 +61,4 @@ def imdbDetails():
     return jsonify(data)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, port=33507)

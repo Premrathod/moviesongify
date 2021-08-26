@@ -11,9 +11,10 @@ var spotifyApi = new SpotifyWebApi({
 	redirectUri: "http://localhost:3000/",
 });
 
-const access_token = spotifyHelperFunctions.access_token;
+// const access_token = spotifyHelperFunctions._access_token();
+// console.log("-------", access_token);
 
-spotifyApi.setAccessToken(access_token);
+// spotifyApi.setAccessToken(access_token);
 
 router.get("/spotify", async (req, res) => {
 	const genres = await spotifyHelperFunctions._getGenres();
@@ -24,7 +25,25 @@ router.get("/spotify/genres/:id", async (req, res) => {
 	const playlists = await spotifyHelperFunctions._getPlaylistByGenre(
 		req.params.id
 	);
+	// console.log(playlists);
 	res.render("user/spotifyGenreId", { playlists });
+});
+
+router.get("/spotify/genres/:id/tracks", async (req, res) => {
+	const tracks = await spotifyHelperFunctions._getTracks(
+		`https://api.spotify.com/v1/playlists/${req.params.id}/tracks`
+	);
+	// console.log(tracks[0].track.album.images);
+	res.render("user/spotifyTracks", { tracks, playlistId: req.params.id });
+});
+
+router.get("/spotify/genres/:id/tracks/:trackId/track", async (req, res) => {
+	const track = await spotifyHelperFunctions._getTrack(
+		`https://api.spotify.com/v1/tracks/${req.params.trackId}`
+	);
+	console.log(track);
+	res.redirect("back");
+	// res.render("user/spotifyGenreId", { tracks });
 });
 
 router.get("/", async (req, res) => {
@@ -45,7 +64,7 @@ router.get("/movie/:id", async (req, res) => {
 	let imdb_id = await response.imdb_id;
 
 	let imdbDetails = await fetch(
-		"http://1e34-103-58-153-177.ngrok.io/imdbDetails",
+		"https://moviesongifyflaskapi.herokuapp.com/imdbDetails",
 		{
 			method: "POST",
 			body: JSON.stringify({
@@ -112,7 +131,7 @@ router.get("/tvshow/:id", async (req, res) => {
 	console.log(imdb_id);
 
 	let imdbDetails = await fetch(
-		"http://1e34-103-58-153-177.ngrok.io/imdbDetails",
+		"https://moviesongifyflaskapi.herokuapp.com/imdbDetails",
 		{
 			method: "POST",
 			body: JSON.stringify({

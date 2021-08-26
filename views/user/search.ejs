@@ -17,7 +17,11 @@
                         alt="Card image cap">
                     <div class="card-body" style="background-color: #000000;">
                         <h5 class="card-title" style="color:white;"><%= movie.title %></h5>
+                        <% if(movie.media_type=='movie'){ %>
                         <a href="/movie/<%= movie.id %>" class="btn" style="background-color: #F5C518;color: #000000;font: 1.2em bold sans-serif;font-weight: 700;">View more</a>
+                        <% }else{ %>
+                        <a href="/tvshow/<%= movie.id %>" class="btn" style="background-color: #F5C518;color: #000000;font: 1.2em bold sans-serif;font-weight: 700;">View more</a>
+                        <% } %>
                     </div>
                 </div>
             </div>

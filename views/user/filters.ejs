@@ -1,7 +1,9 @@
 <%- include('../partials/header.ejs') %>
 <div class="container-fluid mx-auto mt-5">
   <%- include('../partials/messages.ejs') %>
-  <% if(type=="Movie"){ %>
+  <% if(results.length==0){ %>
+  <h1 style="text-align:center;color: white;" class="mb-5">There are no <i style="color: #F5C518;"><%= filterType %> <%= type %>s</i> currently available!</h1>
+  <% }else if(type=="Movie"){ %>
   <h1 style="text-align:center;color: white;" class="mb-5">This is the list of Available <i style="color: #F5C518;"><%= filterType %> <%= type %>s</i> On our site!</h1>
   <% }else{ %>
   <h1 style="text-align:center;color: white;" class="mb-5">This is the list of Available <i style="color: #F5C518;"><%= filterType %> <%= type %> Shows</i> On our site!</h1>

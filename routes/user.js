@@ -96,8 +96,11 @@ router.get("/movie/:id", async (req, res) => {
 	);
 	similarResponse = await similarResponse.json();
 
+	let type = "Movie";
+
 	if (similarResponse.results.length <= 8)
 		res.render("user/movie", {
+			type,
 			movie: response,
 			videos: videoResponse.results,
 			reviews: reviewResponse.results,
@@ -106,6 +109,7 @@ router.get("/movie/:id", async (req, res) => {
 		});
 	else {
 		res.render("user/movie", {
+			type,
 			movie: response,
 			videos: videoResponse.results,
 			reviews: reviewResponse.results,
@@ -118,6 +122,7 @@ router.get("/movie/:id", async (req, res) => {
 // get info about particular TV Show -------------------------
 router.get("/tvshow/:id", async (req, res) => {
 	//search TV Show by id
+	console.log("aya mc");
 	let response = await fetch(
 		`https://api.themoviedb.org/3/tv/${req.params.id}?api_key=${process.env.TMDB_API_KEY}`
 	);
@@ -161,8 +166,12 @@ router.get("/tvshow/:id", async (req, res) => {
 		`https://api.themoviedb.org/3/tv/${req.params.id}/similar?api_key=${process.env.TMDB_API_KEY}`
 	);
 	similarResponse = await similarResponse.json();
+
+	let type = "TV";
+
 	if (similarResponse.results.length <= 8)
 		res.render("user/movie", {
+			type,
 			movie: response,
 			videos: videoResponse.results,
 			reviews: reviewResponse.results,
@@ -171,6 +180,7 @@ router.get("/tvshow/:id", async (req, res) => {
 		});
 	else {
 		res.render("user/movie", {
+			type,
 			movie: response,
 			videos: videoResponse.results,
 			reviews: reviewResponse.results,
@@ -183,9 +193,10 @@ router.get("/tvshow/:id", async (req, res) => {
 router.get("/search", async (req, res) => {
 	const search = req.query.movie;
 	let response = await fetch(
-		`https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB_API_KEY}&query=${search}`
+		`https://api.themoviedb.org/3/search/multi?api_key=${process.env.TMDB_API_KEY}&query=${search}`
 	);
 	response = await response.json();
+	// console.log(response);
 	const results = await response.results.filter(
 		(movie) => movie.poster_path != null
 	);
@@ -246,12 +257,15 @@ router.get("/movies/latest", async (req, res) => {
 		`https://api.themoviedb.org/3/movie/latest?api_key=${process.env.TMDB_API_KEY}`
 	);
 	response = await response.json();
-	const results = await response.results.filter(
-		(movie) => movie.poster_path != null
-	);
 	let filterType = "Latest",
 		type = "Movie";
-	res.render("user/filters", { results, filterType, type });
+	let results = [];
+	if (response.poster_path != null) {
+		results.push(response);
+		res.render("user/filters", { results, filterType, type });
+	} else {
+		res.render("user/filters", { results, filterType, type });
+	}
 });
 
 router.get("/movies/upcoming", async (req, res) => {

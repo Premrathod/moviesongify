@@ -128,7 +128,6 @@ router.get("/tvshow/:id", async (req, res) => {
 	);
 	external_ids = await external_ids.json();
 	const imdb_id = external_ids.imdb_id;
-	console.log(imdb_id);
 
 	let imdbDetails = await fetch(
 		"https://moviesongifyflaskapi.herokuapp.com/imdbDetails",

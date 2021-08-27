@@ -40,7 +40,8 @@ const _getGenres = async () => {
 			headers: { Authorization: "Bearer " + access_token },
 		}
 	);
-
+	console.log("ID:", clientId);
+	console.log("Secret:", clientSecret);
 	const data = await result.json();
 	return data.categories.items;
 };

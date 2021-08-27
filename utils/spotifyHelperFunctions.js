@@ -3,8 +3,6 @@ const clientId = process.env.SPOTIFY_API_ID;
 const clientSecret = process.env.SPOTIFY_API_SECRET;
 const SpotifyWebApi = require("spotify-web-api-node");
 
-var access_token;
-
 const _getToken = async () => {
 	const result = await fetch("https://accounts.spotify.com/api/token", {
 		method: "POST",
@@ -19,11 +17,8 @@ const _getToken = async () => {
 	return data.access_token;
 };
 
-_getToken().then((res) => {
-	access_token = res;
-});
-
 const _getGenres = async () => {
+	const access_token = await _getToken();
 	const result = await fetch(
 		`https://api.spotify.com/v1/browse/categories?locale=sv_US`,
 		{
@@ -41,7 +36,7 @@ const _getGenres = async () => {
 
 const _getPlaylistByGenre = async (genreId) => {
 	const limit = 10;
-
+	const access_token = await _getToken();
 	const result = await fetch(
 		`https://api.spotify.com/v1/browse/categories/${genreId}/playlists?limit=${limit}`,
 		{
@@ -56,7 +51,7 @@ const _getPlaylistByGenre = async (genreId) => {
 
 const _getTracks = async (tracksEndPoint) => {
 	const limit = 10;
-
+	const access_token = await _getToken();
 	const result = await fetch(`${tracksEndPoint}?limit=${limit}`, {
 		method: "GET",
 		headers: { Authorization: "Bearer " + access_token },
@@ -67,6 +62,7 @@ const _getTracks = async (tracksEndPoint) => {
 };
 
 const _getTrack = async (trackEndPoint) => {
+	const access_token = await _getToken();
 	const result = await fetch(`${trackEndPoint}`, {
 		method: "GET",
 		headers: { Authorization: "Bearer " + access_token },
@@ -77,7 +73,6 @@ const _getTrack = async (trackEndPoint) => {
 };
 
 module.exports = {
-	access_token,
 	_getToken,
 	_getGenres,
 	_getPlaylistByGenre,

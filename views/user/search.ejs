@@ -3,7 +3,7 @@
     <%- include('../partials/messages.ejs') %>
     <% if(results.length==0){ %>
         <h1 style="text-align:center;color: white;" class="mb-5">Sorry we are unable to find movies based on your search. <br> Please search with a valid name!</h1>
-    <% }else{ %>
+    <% }else{ %>    
         <% if(genre){ %>
         <h1 style="text-align:center;color: white;" class="mb-5">This is the filtered <i style="color: #F5C518;"><%= type %></i> list based on <i style="color: #F5C518;"><%= genre %></i> Genre!</h1>
         <% }else{ %>

@@ -38,12 +38,12 @@ router.get("/spotify/genres/:id/tracks", async (req, res) => {
 });
 
 router.get("/spotify/genres/:id/tracks/:trackId/track", async (req, res) => {
+	const access_token = await spotifyHelperFunctions._getToken();
 	const track = await spotifyHelperFunctions._getTrack(
 		`https://api.spotify.com/v1/tracks/${req.params.trackId}`
 	);
 	console.log(track);
-	res.redirect("back");
-	// res.render("user/spotifyGenreId", { tracks });
+	res.render("user/spotifyPlayTrack", { track, access_token });
 });
 
 router.get("/", async (req, res) => {

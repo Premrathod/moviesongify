@@ -1,0 +1,8 @@
+<%- include('../partials/header.ejs') %>
+<div class="container-fluid mx-auto mt-5">
+  <%- include('../partials/messages.ejs') %>
+  <div class="row align-items-center justify-content-center">
+        <iframe src="https://open.spotify.com/embed/track/<%= track.id %>" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  </div>
+</div>
+<%- include('../partials/footer.ejs') %>

@@ -5,13 +5,6 @@ const SpotifyWebApi = require("spotify-web-api-node");
 
 var access_token;
 
-// spotify API configuration
-var spotifyApi = new SpotifyWebApi({
-	clientId: process.env.SPOTIFY_API_ID,
-	clientSecret: process.env.SPOTIFY_API_SECRET,
-	redirectUri: "http://localhost:3000/",
-});
-
 const _getToken = async () => {
 	const result = await fetch("https://accounts.spotify.com/api/token", {
 		method: "POST",
@@ -29,8 +22,6 @@ const _getToken = async () => {
 _getToken().then((res) => {
 	access_token = res;
 });
-
-spotifyApi.setAccessToken(access_token);
 
 const _getGenres = async () => {
 	const result = await fetch(
